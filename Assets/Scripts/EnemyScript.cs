@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -14,21 +15,10 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if(player.damagePlayer.IsPressed())
         {
-            player.anim.Play("Hurt");
+            print("Player has been damaged");
             playerData.health -= 10;
-
-            if (playerData.health > 0)
-            {
-                player.anim.Play("Death");
-                playerData.lives -= 1;
-            }
         }
     }
 }
